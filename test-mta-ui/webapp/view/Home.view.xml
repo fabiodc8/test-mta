@@ -1,0 +1,63 @@
+<mvc:View 
+xmlns="sap.ui.table" 
+xmlns:mvc="sap.ui.core.mvc" 
+xmlns:u="sap.ui.unified" 
+xmlns:c="sap.ui.core" 
+xmlns:m="sap.m" 
+controllerName="test-mta.test-mta-ui.controller.Home" displayBlock="true">
+		<m:Shell id="shell">
+		<m:App id="app">
+				<m:Page id="page" title="{i18n>title}">
+					<m:content>
+						<Table rows="{oDataModel>/Orders}" rowSelectionChange="seleziona" selectionMode="Single" visibleRowCount="9" paste="onPaste" ariaLabelledBy="title" id="table">
+							<extension>
+								<m:OverflowToolbar xmlns:action="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" press="action" action:wiring="\{'press':\{'navigation':\{'routeName':'View_Det'\}\}\}">
+									<m:Title id="title" text="Prodotti"/>
+								<m:ToolbarSpacer/>
+								<m:SearchField placeholder="Filter" value="{oDataModel>/Orders}" liveChange="filterGlobally" width="15rem"/>
+								</m:OverflowToolbar>
+							</extension>
+							<columns>
+								<Column width="10%">
+									<m:Label text="Nome Prodotto" textAlign="Center"/>
+									<template>
+										<m:Text text="{oDataModel>OrderID}" wrapping="false"/>
+									</template>
+								</Column>
+								<Column width="11%" hAlign="Center">
+									<m:Label text="Id Cliente" textAlign="Center"/>
+									<template>
+										<m:Input value="{oDataModel>CustomerID}" editable="false"/>
+									</template>
+								</Column>
+								<Column width="10%" hAlign="Center">
+									<m:Label text="Id Dipendente"/>
+									<template>
+										<m:Label text="{oDataModel>EmployeeID}"/>
+									</template>
+								</Column>
+								<Column width="23%" hAlign="Center">
+									<m:Label text="Data Ordine"/>
+									<template>
+										<m:Label text="{oDataModel>OrderDate}"/>
+									</template>
+								</Column>
+								<Column width="23%" hAlign="Center">
+									<m:Label text="Data Richiesta"/>
+									<template>
+										<m:Label text="{oDataModel>RequiredDate}"/>
+									</template>
+								</Column>
+								<Column width="23%" hAlign="Center">
+									<m:Label text="Data Spedizione"/>
+									<template>
+										<m:Label text="{oDataModel>ShippedDate}"/>
+									</template>
+								</Column>
+							</columns>
+						</Table>
+					</m:content>
+				</m:Page>
+		</m:App>
+	</m:Shell>
+</mvc:View>
