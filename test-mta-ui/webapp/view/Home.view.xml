@@ -1,11 +1,66 @@
 <mvc:View 
-xmlns="sap.ui.table" 
-xmlns:mvc="sap.ui.core.mvc" 
-xmlns:u="sap.ui.unified" 
-xmlns:c="sap.ui.core" 
-xmlns:m="sap.m" 
-controllerName="test-mta.test-mta-ui.controller.Home" displayBlock="true">
-		<m:Shell id="shell">
+	xmlns="sap.m" 
+	xmlns:form="sap.ui.layout.form"
+	xmlns:mvc="sap.ui.core.mvc" 
+	xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+	controllerName="test-mta.test-mta-ui.controller.Home" displayBlock="true">
+	<Shell id="shell">
+		<App id="app">
+			<SplitContainer id="SplitContDemo" initialDetail="detail" initialMaster="master">
+				<detailPages>
+					<!--<Page id="detail" title="Detail 1" backgroundDesign="Solid" showNavButton="{= !${device>/system/desktop} }" 
+						navButtonPress=".onPressDetailBack" class="sapUiStdPage">
+						<Label text="Detail page 1" class="sapUiTinyMarginEnd"/>
+						<Button text="Go to Detail page 2" press=".onPressNavToDetail"/>
+					</Page>-->
+					<!--<Page id="detailDetail" title="Detail Detail" backgroundDesign="Solid" class="sapUiStdPage" showNavButton="true" 
+						navButtonPress=".onPressDetailBack">
+						<VBox class="sapUiSmallMargin">
+							<Label text="This is Detail Page 2"/>
+							<Text
+								text="Here you could change the Split Application mode. After the mode change, resize the browser window to see the difference in the master form behaviour."/>
+							<RadioButtonGroup columns="1" width="500px" class="sapUiMediumMarginBottom" select=".onPressModeBtn">
+								<buttons>
+									<RadioButton id="RB1-1" text="show/hide" selected="true" custom:splitAppMode="ShowHideMode"/>
+									<RadioButton id="RB1-2" text="stretch/compress" custom:splitAppMode="StretchCompressMode"/>
+									<RadioButton id="RB1-3" text="hide" custom:splitAppMode="HideMode"/>
+									<RadioButton id="RB1-4" text="popover" custom:splitAppMode="PopoverMode"/>
+								</buttons>
+							</RadioButtonGroup>
+						</VBox>
+					</Page>-->
+					<Page id="detail2" title="Dettagli ordine" backgroundDesign="Solid" class="sapUiStdPage" showNavButton="false" 
+						navButtonPress=".onPressDetailBack">
+						<form:SimpleForm editable="false" layout="ColumnLayout">
+							<Label text="ID Cliente"/>
+							<Input id="id" value="{oDataModel>CustomerID}" valueLiveUpdate="true" width="200px" enabled="{/enabled}"/>
+							<Label text="ID Fornitore"/>
+							<Input value="{oDataModel>EmployeeID}" valueLiveUpdate="true" width="200px" enabled="{/enabled}"/>
+							<Label text="Data Ordine"/>
+							<Input value="{oDataModel>OrderDate}" valueLiveUpdate="true" width="200px" enabled="{/enabled}"/>
+							<Label text="Data Spedizione"/>
+							<Input value="{oDataModel>ShippedDate}" valueLiveUpdate="true" width="200px" enabled="{/enabled}"/>
+						
+						</form:SimpleForm>
+					</Page>
+				</detailPages>
+				<masterPages>
+					<!--<Page id="master" title="Master 1" backgroundDesign="List" class="sapUiStdPage">
+						<List>
+							<StandardListItem title="To Master2" type="Navigation" press=".onPressGoToMaster"/>
+						</List>
+					</Page>-->
+					<Page id="master2" title="Lista Ordini" backgroundDesign="List" class="sapUiStdPage" showNavButton="false"
+						navButtonPress=".onPressMasterBack">
+						<List itemPress=".onListItemPress" items="{ path: 'oDataModel>/Orders' }">
+							<StandardListItem id="selected" title="{oDataModel>OrderID}" type="Active" custom:to="detail2"/>
+						</List>
+					</Page>
+				</masterPages>
+			</SplitContainer>
+		</App>
+	</Shell>
+	<!--	<m:Shell id="shell">
 		<m:App id="app">
 				<m:Page id="page" title="{i18n>title}">
 					<m:content>
@@ -59,5 +114,5 @@ controllerName="test-mta.test-mta-ui.controller.Home" displayBlock="true">
 					</m:content>
 				</m:Page>
 		</m:App>
-	</m:Shell>
+	</m:Shell>-->
 </mvc:View>

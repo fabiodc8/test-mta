@@ -15,6 +15,16 @@ modules:
     - name: uaa_test_mta
     - name: dest_test_mta
 
+
+ 
+
+
+ - name: test-mta-db
+   type: hdb
+   path: test-mta-db
+   requires:
+    - name: hdi_test-mta-db
+
 resources:
  - name: uaa_test_mta
    parameters:
@@ -28,4 +38,14 @@ resources:
       service-plan: lite
       service: destination
    type: org.cloudfoundry.managed-service
+
+
+
+ - name: hdi_test-mta-db
+   parameters:
+      config:
+         schema: DB
+   properties:
+      hdi-container-name: ${service-name}
+   type: com.sap.xs.hdi-container
 
